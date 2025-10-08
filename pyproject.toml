@@ -139,7 +139,7 @@ name = "cz_conventional_commits"
 
 # Version management settings
 version_provider = "pyproject"
-update_changelog_on_bump = true
+update_changelog_on_bump = false
 version_scheme = "semver"
 
 # Conventional commit configuration
@@ -165,4 +165,4 @@ changelog_file = "CHANGELOG.md"
 changelog_start_rev = "v0.1.0"
 
 # Customize commit message format
-message_template = "{{change_type}}{% if scope %}({{scope}}){% endif %}: {{message}}"
+message_template = "{% raw %}{{change_type}}{% if scope %}({{scope}}){% endif %}: {{message}}{% endraw %}"
