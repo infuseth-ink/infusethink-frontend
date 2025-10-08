@@ -21,7 +21,7 @@ def App():
         controls=[
             ft.SafeArea(
                 ft.Container(
-                    ft.Text(value=f"{count}", size=50),
+                    ft.SelectionArea(content=ft.Text(value=f"{count}", size=50)),
                     alignment=ft.Alignment.CENTER,
                 ),
                 expand=True,
