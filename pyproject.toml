@@ -4,12 +4,8 @@ version = "0.1.0"
 description = ""
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [
-    { name = "Flet developer", email = "you@example.com" }
-]
-dependencies = [
-  "flet==0.70.0.dev6232"
-]
+authors = [{ name = "Flet developer", email = "you@example.com" }]
+dependencies = ["flet==0.70.0.dev6232"]
 
 [tool.flet]
 # Docs: https://flet.dev/docs/publish
@@ -23,11 +19,149 @@ path = "src"
 
 [tool.uv]
 dev-dependencies = [
-    "flet[all]==0.70.0.dev6232",
+  "flet[all]==0.70.0.dev6232",
+  "commitizen>=4.9.1",
+  "pre-commit>=4.3.0",
+  "ruff>=0.13.3",
 ]
 
 [tool.poetry]
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-flet = {extras = ["all"], version = "0.70.0.dev6232"}
+flet = { extras = ["all"], version = "0.70.0.dev6232" }
+
+[tool.ruff]
+# Target Python 3.10+ for Flet compatibility
+target-version = "py310"
+line-length = 88
+indent-width = 4
+
+# Include relevant file types for Flet projects
+include = ["*.py", "*.pyi", "*.pyw", "pyproject.toml"]
+
+# Use gitignore for intelligent exclusions
+respect-gitignore = true
+
+# Enable fix behavior by default
+fix = true
+
+# Show all fixed violations for transparency
+show-fixes = true
+
+[tool.ruff.lint]
+# Select comprehensive rule set for modern Python development
+select = [
+  # Pyflakes (F) - Essential error detection
+  "F",
+  # pycodestyle errors (E) - PEP 8 compliance
+  "E",
+  # pycodestyle warnings (W) - Additional style issues
+  "W",
+  # flake8-bugbear (B) - Likely bugs and design problems
+  "B",
+  # flake8-simplify (SIM) - Code simplification suggestions
+  "SIM",
+  # isort (I) - Import sorting and organization
+  "I",
+  # pyupgrade (UP) - Modern Python syntax upgrades
+  "UP",
+  # flake8-comprehensions (C4) - Better list/set/dict comprehensions
+  "C4",
+  # flake8-pie (PIE) - Miscellaneous improvements
+  "PIE",
+  # Ruff-specific rules (RUF) - Performance and style improvements
+  "RUF",
+]
+
+# Ignore some rules that are common in Flet apps
+ignore = [
+  # E501 handled by formatter for better line wrapping
+  "E501",
+  # Allow print statements for debugging Flet apps
+  "T201",
+  # Allow TODO comments during development
+  "FIX002",
+  # Flet apps often have unused variables in event handlers
+  "ARG001",
+]
+
+# Allow automatic fixes for most rules
+fixable = ["ALL"]
+
+# Prevent auto-fixing of potentially unsafe changes
+unfixable = [
+  # Never auto-remove unused imports in __init__.py (may be re-exports)
+  "F401",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Allow unused imports in __init__.py (common for re-exports)
+"__init__.py" = ["F401"]
+# Allow longer lines in Flet asset files or generated code
+"**/assets/*.py" = ["E501"]
+
+[tool.ruff.lint.isort]
+# Modern import sorting configuration
+combine-as-imports = true
+force-sort-within-sections = true
+split-on-trailing-comma = true
+
+# Import sections in logical order
+section-order = [
+  "future",
+  "standard-library",
+  "third-party",
+  "first-party",
+  "local-folder",
+]
+
+# Recognize project structure
+known-first-party = ["infusethink"]
+
+[tool.ruff.format]
+# Modern Python formatting preferences
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+# Enable docstring code formatting for better documentation
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+# Respect trailing commas for better git diffs
+skip-magic-trailing-comma = false
+
+[tool.commitizen]
+# Use conventional commits specification
+name = "cz_conventional_commits"
+
+# Version management settings
+version_provider = "pyproject"
+update_changelog_on_bump = true
+version_scheme = "semver"
+
+# Conventional commit configuration
+bump_message = "bump: version $current_version → $new_version"
+tag_format = "v$version"
+
+# Commit message templates and validation
+allowed_prefixes = [
+  "feat",
+  "fix",
+  "docs",
+  "style",
+  "refactor",
+  "perf",
+  "test",
+  "build",
+  "ci",
+  "chore",
+]
+
+# Generate changelog from conventional commits
+changelog_file = "CHANGELOG.md"
+changelog_start_rev = "v0.1.0"
+
+# Customize commit message format
+message_template = "{{change_type}}{% if scope %}({{scope}}){% endif %}: {{message}}"
