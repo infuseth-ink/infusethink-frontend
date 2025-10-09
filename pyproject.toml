@@ -5,7 +5,7 @@ description = "Frontend for Infuseth.ink (hobby project), built with ❤️ usin
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Richard Michael Coo", email = "webmaster@infuseth.ink" }]
-dependencies = ["flet==0.70.0.dev6232"]
+dependencies = ["flet[all]==0.70.0.dev6268"]
 
 [tool.flet]
 # Docs: https://flet.dev/docs/publish
@@ -19,18 +19,11 @@ path = "src"
 
 [tool.uv]
 dev-dependencies = [
-  "flet[all]==0.70.0.dev6232",
   "commitizen>=4.9.1",
   "pre-commit>=4.3.0",
   "ruff>=0.13.3",
   "pyright>=1.1.406",
 ]
-
-[tool.poetry]
-package-mode = false
-
-[tool.poetry.group.dev.dependencies]
-flet = { extras = ["all"], version = "0.70.0.dev6232" }
 
 [tool.ruff]
 # Target Python 3.10+ for Flet compatibility
