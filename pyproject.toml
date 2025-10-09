@@ -166,3 +166,103 @@ changelog_start_rev = "v0.1.0"
 
 # Customize commit message format
 message_template = "{% raw %}{{change_type}}{% if scope %}({{scope}}){% endif %}: {{message}}{% endraw %}"
+
+[tool.pyright]
+# Target the same Python version as the project
+pythonVersion = "3.13"
+
+# Use your existing .venv for type checking
+venvPath = "."
+venv = ".venv"
+
+# Include only source code
+include = ["src"]
+
+# Exclude everything we don't want to type check
+exclude = [
+  "**/__pycache__",
+  "**/.pytest_cache",
+  "**/.mypy_cache",
+  "**/.ruff_cache",
+  "**/.git",
+  "**/node_modules",
+  "**/build",
+  "**/dist",
+  "**/.venv",
+  "**/venv",
+  "**/*.egg-info",
+  "**/.tox",
+  "**/.coverage",
+  "**/coverage.xml",
+  "**/htmlcov",
+  "**/.*",
+  "**/migrations",
+]
+
+# Ignore certain files that commonly have type issues
+ignore = ["**/.venv/**", "**/build/**", "**/dist/**"]
+
+# Report configuration
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportUnusedImport = true
+reportUnusedClass = true
+reportUnusedFunction = true
+reportUnusedVariable = false
+reportDuplicateImport = true
+reportOptionalSubscript = true
+reportOptionalMemberAccess = true
+reportOptionalCall = true
+reportOptionalIterable = true
+reportOptionalContextManager = true
+reportOptionalOperand = true
+reportTypedDictNotRequiredAccess = false
+reportPrivateImportUsage = false
+reportConstantRedefinition = true
+reportIncompatibleMethodOverride = true
+reportIncompatibleVariableOverride = true
+reportInconsistentConstructor = false
+reportOverlappingOverloads = true
+reportMissingSuperCall = false
+reportUninitializedInstanceVariable = false
+reportInvalidStringEscapeSequence = true
+reportUnknownParameterType = false
+reportUnknownArgumentType = false
+reportUnknownLambdaType = false
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportMissingParameterType = false
+reportMissingTypeArgument = false
+reportInvalidTypeVarUse = true
+reportCallInDefaultInitializer = false
+reportUnnecessaryIsInstance = true
+reportUnnecessaryCast = true
+reportUnnecessaryComparison = true
+reportUnnecessaryContains = true
+reportAssertAlwaysTrue = true
+reportSelfClsParameterName = true
+reportImplicitStringConcatenation = false
+reportUndefinedVariable = true
+reportUnboundVariable = true
+reportInvalidStubStatement = true
+reportIncompleteStub = true
+reportUnsupportedDunderAll = true
+reportUnusedCoroutine = true
+reportFunctionMemberAccess = true
+
+# Type checking mode - be more lenient for alpha APIs
+typeCheckingMode = "basic"
+
+# Define Python platforms
+pythonPlatform = "All"
+
+# Executable path
+stubPath = "typings"
+
+# Analysis settings
+autoImportCompletions = true
+autoSearchPaths = true
+extraPaths = []
+
+# Use library code for unknown imports
+useLibraryCodeForTypes = true
