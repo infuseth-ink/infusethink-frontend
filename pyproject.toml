@@ -5,7 +5,7 @@ description = "Frontend for Infuseth.ink (hobby project), built with ❤️ usin
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Richard Michael Coo", email = "webmaster@infuseth.ink" }]
-dependencies = ["flet[all]==0.70.0.dev6268"]
+dependencies = ["flet==0.70.0.dev6232"]
 
 [tool.flet]
 # Docs: https://flet.dev/docs/publish
@@ -19,6 +19,9 @@ path = "src"
 
 [tool.uv]
 dev-dependencies = [
+  "flet-cli==0.70.0.dev6232",
+  "flet-desktop==0.70.0.dev6232",
+  "flet-web==0.70.0.dev6232",
   "commitizen>=4.9.1",
   "pre-commit>=4.3.0",
   "ruff>=0.13.3",
