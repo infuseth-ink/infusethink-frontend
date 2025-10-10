@@ -3,9 +3,9 @@ name = "infusethink-frontend"
 version = "0.1.0"
 description = "Frontend for Infuseth.ink (hobby project), built with ❤️ using Flet!"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 authors = [{ name = "Richard Michael Coo", email = "webmaster@infuseth.ink" }]
-dependencies = ["flet==0.70.0.dev6232"]
+dependencies = ["flet==0.70.0.dev6281"]
 
 [tool.flet]
 # Docs: https://flet.dev/docs/publish
@@ -19,9 +19,9 @@ path = "src"
 
 [tool.uv]
 dev-dependencies = [
-  "flet-cli==0.70.0.dev6232",
-  "flet-desktop==0.70.0.dev6232",
-  "flet-web==0.70.0.dev6232",
+  "flet-cli==0.70.0.dev6281",
+  "flet-desktop==0.70.0.dev6281",
+  "flet-web==0.70.0.dev6281",
   "commitizen>=4.9.1",
   "pre-commit>=4.3.0",
   "ruff>=0.13.3",
@@ -29,8 +29,7 @@ dev-dependencies = [
 ]
 
 [tool.ruff]
-# Target Python 3.10+ for Flet compatibility
-target-version = "py310"
+target-version = "py313"
 line-length = 88
 indent-width = 4
 
