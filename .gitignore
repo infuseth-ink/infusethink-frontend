@@ -167,3 +167,6 @@ storage/
 
 # individual developer preferences
 .vscode/settings.json
+
+# MacOS specific
+.DS_Store
