@@ -131,7 +131,7 @@ skip-magic-trailing-comma = false
 
 [tool.commitizen]
 # Use conventional commits specification
-name = "cz_conventional_commits"
+name = "cz_gitmoji"
 
 # Version management settings
 version_provider = "pyproject"
