@@ -8,26 +8,34 @@ import flet as ft
 @dataclass
 @ft.observable
 class CounterModel:
-    """Observable model for counter state."""
+    """Observable model for counter state with business logic."""
 
     counter: int = 0
 
+    def increment(self):
+        """Increment counter by 1."""
+        self.counter += 1
+
+    def decrement(self):
+        """Decrement counter by 1."""
+        self.counter -= 1
+
+    def reset(self):
+        """Reset counter to 0."""
+        self.counter = 0
+
+    @property
+    def is_positive(self) -> bool:
+        """Check if counter is positive."""
+        return self.counter > 0
+
 
 @ft.component
-def HomePage():
-    """Home page with the counter functionality."""
-
+def CounterView(model: CounterModel):
+    """Pure functional counter view component."""
     # Brand colors
     MATCHA_GREEN = "#47905f"
     GOLDEN_OCHRE = "#e1c154"
-
-    model, _ = ft.use_state(CounterModel())
-
-    def minus_click(e):
-        model.counter -= 1
-
-    def plus_click(e):
-        model.counter += 1
 
     return ft.SelectionArea(
         content=ft.Column(
@@ -47,8 +55,20 @@ def HomePage():
                 ),
                 ft.Row(
                     controls=[
-                        ft.IconButton(ft.Icons.REMOVE, on_click=minus_click),
-                        ft.IconButton(ft.Icons.ADD, on_click=plus_click),
+                        ft.IconButton(
+                            ft.Icons.REMOVE, on_click=lambda: model.decrement()
+                        ),
+                        ft.Button(
+                            "Reset",
+                            on_click=lambda: model.reset(),
+                            style=ft.ButtonStyle(
+                                color=GOLDEN_OCHRE,
+                                text_style=ft.TextStyle(
+                                    size=16, weight=ft.FontWeight.W_500
+                                ),
+                            ),
+                        ),
+                        ft.IconButton(ft.Icons.ADD, on_click=lambda: model.increment()),
                     ],
                     alignment=ft.MainAxisAlignment.CENTER,
                 ),
@@ -57,3 +77,10 @@ def HomePage():
             spacing=20,
         )
     )
+
+
+@ft.component
+def HomePage():
+    """Home page container component."""
+    model, _ = ft.use_state(CounterModel())
+    return CounterView(model)
