@@ -27,6 +27,7 @@ dev-dependencies = [
   "ruff>=0.13.3",
   "pyright>=1.1.406",
   "cz-conventional-gitmoji>=0.7.0",
+  "pytest>=8.4.2",
 ]
 
 [tool.ruff]
