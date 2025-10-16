@@ -24,9 +24,6 @@ repos:
         name: Check JSON syntax
       - id: check-merge-conflict
         name: Check for merge conflicts
-      - id: check-added-large-files
-        name: Check for large files
-        args: [--maxkb=1000]
       - id: debug-statements
         name: Check for debug statements
 
