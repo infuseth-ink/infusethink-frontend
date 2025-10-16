@@ -1,6 +1,16 @@
 """Home page component with the original counter functionality"""
 
+from dataclasses import dataclass
+
 import flet as ft
+
+
+@dataclass
+@ft.observable
+class CounterModel:
+    """Observable model for counter state."""
+
+    counter: int = 0
 
 
 @ft.component
@@ -11,13 +21,13 @@ def HomePage():
     MATCHA_GREEN = "#47905f"
     GOLDEN_OCHRE = "#e1c154"
 
-    counter, set_counter = ft.use_state(0)
+    model, _ = ft.use_state(CounterModel())
 
     def minus_click(e):
-        set_counter(counter - 1)
+        model.counter -= 1
 
     def plus_click(e):
-        set_counter(counter + 1)
+        model.counter += 1
 
     return ft.SelectionArea(
         content=ft.Column(
@@ -30,7 +40,7 @@ def HomePage():
                 ),
                 ft.Text("Welcome to our counter app!", size=18, color=GOLDEN_OCHRE),
                 ft.Text(
-                    str(counter),
+                    str(model.counter),
                     size=24,
                     weight=ft.FontWeight.BOLD,
                     color=MATCHA_GREEN,
