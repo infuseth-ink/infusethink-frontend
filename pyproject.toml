@@ -143,20 +143,6 @@ version_scheme = "semver"
 bump_message = "bump: version $current_version → $new_version"
 tag_format = "v$version"
 
-# Commit message templates and validation
-allowed_prefixes = [
-  "feat",
-  "fix",
-  "docs",
-  "style",
-  "refactor",
-  "perf",
-  "test",
-  "build",
-  "ci",
-  "chore",
-]
-
 # Generate changelog from conventional commits
 changelog_file = "CHANGELOG.md"
 changelog_start_rev = "v0.1.0"
